@@ -27,21 +27,30 @@
 \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
-% These packages are all incorporated in the memoir class to one degree or another...
 \usepackage{pdfpages}
 \usepackage{amsmath,mathtools,amsfonts}
 \usepackage{bm}
 \usepackage{blindtext}
+\usepackage{fancyhdr}
 
 %%% HEADERS & FOOTERS
-\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
-\pagestyle{fancy} % options: empty , plain , fancy
+\pagestyle{fancy}
 \renewcommand{\headrulewidth}{1pt} % customise the layout...
-\lhead{}\chead{}\rhead{Jesse Sheehan}
-\lfoot{}\cfoot{\thepage}\rfoot{}
+\renewcommand{\footrulewidth}{1pt} % customise the layout...
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
 
-%%% END Article customizations
+% HEADER
+\fancyhead[L]{ENEL321 Lab Report}
+\fancyhead[C]{Jesse Sheehan}
+\fancyhead[R]{\nouppercase{\rightmark}}
 
+% FOOTER
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+
+%% TITLE
 \title{ENEL321 Lab Report}
 \date{\today}
 \author{
@@ -50,6 +59,8 @@
 	{\small{ID: 53366509}}\\
 	{\small{jps111@uclive.ac.nz}}\\
 }
+
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 
 \begin{document}
 
