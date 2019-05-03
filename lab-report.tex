@@ -26,7 +26,7 @@
 \usepackage{array} % for better arrays (eg matrices) in maths
 \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
-\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+%\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 \usepackage{pdfpages}
 \usepackage{amsmath,mathtools,amsfonts}
 \usepackage{bm}
@@ -35,6 +35,7 @@
 \usepackage{float}
 \usepackage{gensymb}
 \usepackage{svg}
+\usepackage{subcaption}
 
 \graphicspath{ {./images/} }
 
@@ -124,22 +125,43 @@ e_{ss} &< 1.5\degree & t_r &< 0.8 \textrm{s} \\[1em]
 \end{align*}
 
 % Explain the different controllers used.
-\noindent By using three different controllers, we were able to analyse the differences between them and to better understand the relationship between the step input, the gains, and the output.
+\noindent By using three different types of controller, we were able to analyse the differences between them and to better understand the relationship between the step input, the gains, and the output.
 \\ 
 
-\noindent The P Controller would be expected to overshoot the target angle and then overshoot in the other direction, oscillating until it comes to a rest near the target angle. This would be an example of an underdamped system.
-The PD Controller would be expected to slowly converge upon the target angle with little or no overshoot (depending on the damping coefficient). A relatively large steady-state error ($e_{ss}$) would be expected. This would be an example of an overdamped system.
+\noindent The following expectations are visible in the MATLAB plot (figure\ \ref{fig:prelab}) below. The P Controller would be expected to overshoot the target angle and then overshoot in the other direction, oscillating until it comes to a rest near the target angle. This would be an example of an underdamped system.
+The PD Controller would be expected to slowly converge upon the target angle with little or no overshoot (depending on the damping coefficient, $\xi$). A relatively large steady-state error ($e_{ss}$) would be expected. This would be an example of an overdamped system.
 The PID Controller is expected to overshoot but then quickly converge towards the target angle. This would be an example of a critically damped system.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{prelab}
+	\caption{The graph showing the predicted responses of each controller.}
+	\label{fig:prelab}
+\end{figure}
 
-\section{Results}
+\section{Results \& Discussion}
 
 % Present experimental results.
+\noindent The following data (figures\ \ref{fig:pid-control} to\ \ref{fig:pd-control}) was captured during the lab:
 
-
-
-\newpage
-
-\section{Discussion}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\includegraphics[width=\textwidth]{pid-control}
+		\caption{PID Controller response.}
+		\label{fig:pid-control}
+	\end{subfigure}
+	\\[1em]
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{p-control}
+		\caption{P Controller response.}
+		\label{fig:p-control}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pd-control}
+		\caption{PD Controller response.}
+		\label{fig:pd-control}
+	\end{subfigure}
+\end{figure}
 
 % Compare results with model, explain differences.
 % Focus on the why rather than the what.
