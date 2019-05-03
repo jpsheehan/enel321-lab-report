@@ -32,6 +32,11 @@
 \usepackage{bm}
 \usepackage{blindtext}
 \usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{gensymb}
+\usepackage{svg}
+
+\graphicspath{ {./images/} }
 
 %%% HEADERS & FOOTERS
 \pagestyle{fancy}
@@ -46,9 +51,9 @@
 \fancyhead[R]{\nouppercase{\rightmark}}
 
 % FOOTER
-\fancyfoot[L]{}
+\fancyfoot[L]{\reflectbox{\includesvg[width=14pt]{rocket}}}
 \fancyfoot[C]{\thepage}
-\fancyfoot[R]{}
+\fancyfoot[R]{\includesvg[width=14pt]{rocket}}
 
 %% TITLE
 \title{ENEL321 Lab Report}
@@ -83,14 +88,38 @@
 \section{Methodology}
 
 % Briefly introduce the problem, and experiment but don't derive the model.
+A test rig (see figure \ref{fig:test-rig}) controlled by two brushless DC motors is subjected to a 20\degree\ step input.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{test-rig}
+	\caption{A front view of the test rig system.}
+	\label{fig:test-rig}
+\end{figure}
+
+\noindent A feedback control system was designed and implemented to meet the following design specifications:
+\begin{align*}
+\xi &> 0.1 & M_p\% &< 15\%  \\[1em]
+e_{ss} &< 1.5\degree & t_r &< 0.8 \textrm{s} \\[1em]
+1 \leq K_p &\leq 2.5 & \frac{K_d}{K_p} &< 0.7
+\end{align*}
+
 % Explain how you designed your gains, and what values you used and why.
+\noindent The predicted gain values were found using an iterative approach.
+MATLAB was used to derive the gains from the transfer function (see equation\ \ref{eq:transfer-function}) with the suggested parameters $\alpha = 1.6$, $\beta = 2.9$, $\gamma = 1.3$ and $\tau = 0.34$.
+\begin{equation}
+\label{eq:transfer-function}
+\frac{X}{R} = \frac{\beta K_p s + \beta K_i}{s^3 + s^2 (\alpha + \beta K_d - \beta K_p \tau) + s(\gamma + \beta K_p - \beta K_i \tau) + \beta K_i}
+\end{equation}
+
+\noindent Three sets of gain values were decided on:
+\begin{align*}
+\textrm{P Controller} &: & K_p &= 0.00 & & & \\
+\textrm{PD Controller} &: & K_p &= 0.00 & K_d &= 0.00 & & \\
+\textrm{PID Controller} &: & K_p &= 0.00 & K_d &= 0.00 & K_i = &0.00
+\end{align*}
+
 % Explain the different controllers used.
-
-\blindtext
-
-\blindtext
-
-\blindtext
 
 \newpage
 
