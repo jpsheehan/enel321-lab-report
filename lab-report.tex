@@ -163,14 +163,42 @@ The PID Controller is expected to overshoot but then quickly converge towards th
 	\end{subfigure}
 \end{figure}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|}
+	\hline
+	\textbf{System} & $K_p$ & $K_i$ & $K_d$ & $M_p\ (\%)$ & $t_r\ \textrm{(s)}$ & $e_{ss}\ \textrm{(\degree)}$ \\
+	
+	\hline
+	PID Control & 1.20 & 0.72 & 0.84 & 34.53 & 0.80 & 0.18 \\
+	
+	\hline
+	P Control & 1.20 & 0.00 & 0.00 & 74.05 & 0.51 & 5.48 \\
+	
+	\hline
+	PD Control & 1.20 & 1.20 & 0.00 & 0.21 & 1.30 & 5.44 \\
+	
+	\hline
+\end{tabular}
+\caption{The analysed results from the experiment.}
+\label{tab:results}
+\end{table}
+
 % Compare results with model, explain differences.
 % Focus on the why rather than the what.
 
-\blindtext
 
-\blindtext
 
-\blindtext
+\noindent The experimental PID controller (figure\ \ref{fig:pid-control}) response was similar to its model. The main differences were the time taken to recover from an overshoot, which were longer than the model. However, the results show that the steady state...
+\\
+
+\noindent The P controller (figure\ \ref{fig:p-control}) was not particularly similar to the model, it was oscillatory and began to converge with some amount of steady-state error. The oscillations subsided very quickly, whereas the model predicted that the oscillations would continue for a longer time period. The oscillations occurred because of the lack of damping in the system.
+\\ 
+
+\noindent The PD controller (figure\ \ref{fig:pd-control}) increases the damping coeffecient of the step response. The experimental results almost exactly match the model with the exception of the fall time being less (and therefore slower). A small anomoly exists in the data after the input falls from 20\degree\ to 0\degree. This may have been from having too much damping in the system. 
+\\ 
+
+\noindent The damping of the oscillations in the P and PID controllers can be partially explained by the torque required to overcome static friction of the axle. Friction also existed from the USB cable that attached the microcontroller to the computer.
 
 \newpage
 
