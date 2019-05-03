@@ -51,12 +51,14 @@
 \fancyhead[R]{\nouppercase{\rightmark}}
 
 % FOOTER
-\fancyfoot[L]{\reflectbox{\includesvg[width=14pt]{rocket}}}
+\fancyfoot[L]{\reflectbox{\includesvg[width=12pt]{rocket}}}
 \fancyfoot[C]{\thepage}
-\fancyfoot[R]{\includesvg[width=14pt]{rocket}}
+\fancyfoot[R]{\includesvg[width=12pt]{rocket}}
 
 %% TITLE
-\title{ENEL321 Lab Report}
+\title{\uppercase{
+	Design, Implementation and Analysis of a Control System
+}}
 \date{\today}
 \author{
 	Jesse Patrick Sheehan\\
@@ -93,7 +95,7 @@ A test rig (see figure \ref{fig:test-rig}) controlled by two brushless DC motors
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{test-rig}
-	\caption{A front view of the test rig system.}
+	\caption{A front view of the test rig system (Hann, 2019).}
 	\label{fig:test-rig}
 \end{figure}
 
@@ -105,33 +107,35 @@ e_{ss} &< 1.5\degree & t_r &< 0.8 \textrm{s} \\[1em]
 \end{align*}
 
 % Explain how you designed your gains, and what values you used and why.
-\noindent The predicted gain values were found using an iterative approach.
-MATLAB was used to derive the gains from the transfer function (see equation\ \ref{eq:transfer-function}) with the suggested parameters $\alpha = 1.6$, $\beta = 2.9$, $\gamma = 1.3$ and $\tau = 0.34$.
+\noindent The predetermined gain values were found using an iterative approach. The transfer function (see equation\ \ref{eq:transfer-function}), with the suggested parameters $\alpha = 1.6$, $\beta = 2.9$, $\gamma = 1.3$ and $\tau = 0.34$, was used with MATLAB to predict how output would be affected by the gains and the step input.
+\\ 
+
 \begin{equation}
 \label{eq:transfer-function}
 \frac{X}{R} = \frac{\beta K_p s + \beta K_i}{s^3 + s^2 (\alpha + \beta K_d - \beta K_p \tau) + s(\gamma + \beta K_p - \beta K_i \tau) + \beta K_i}
 \end{equation}
+\\ 
 
-\noindent Three sets of gain values were decided on:
+\noindent Three sets of predetermined gain values were ultimately decided on:
 \begin{align*}
-\textrm{P Controller} &: & K_p &= 0.00 & & & \\
-\textrm{PD Controller} &: & K_p &= 0.00 & K_d &= 0.00 & & \\
-\textrm{PID Controller} &: & K_p &= 0.00 & K_d &= 0.00 & K_i = &0.00
+\textrm{P Controller} &: & K_p &= 1.20 & & & \\[1em]
+\textrm{PD Controller} &: & K_p &= 1.20 & K_d &= 1.20 & & \\[1em]
+\textrm{PID Controller} &: & K_p &= 1.20 & K_d &= 0.72 & K_i &= 0.84
 \end{align*}
 
 % Explain the different controllers used.
+\noindent By using three different controllers, we were able to analyse the differences between them and to better understand the relationship between the step input, the gains, and the output.
+\\ 
 
-\newpage
+\noindent The P Controller would be expected to overshoot the target angle and then overshoot in the other direction, oscillating until it comes to a rest near the target angle. This would be an example of an underdamped system.
+The PD Controller would be expected to slowly converge upon the target angle with little or no overshoot (depending on the damping coefficient). A relatively large steady-state error ($e_{ss}$) would be expected. This would be an example of an overdamped system.
+The PID Controller is expected to overshoot but then quickly converge towards the target angle. This would be an example of a critically damped system.
 
 \section{Results}
 
 % Present experimental results.
 
-\blindtext
 
-\blindtext
-
-\blindtext
 
 \newpage
 
